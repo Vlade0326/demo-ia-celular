@@ -51,7 +51,8 @@ Provienen de clientes, compañeros, supervisores y áreas administrativas: pedid
 - Tatiana Moreno
 - Percy Oyola
 - Heriberto Rodríguez
-- Adriana
+- Edgardo Meneghello — UITIDET
+- Dr. Andrés Bohórquez C.
 
 ## Publicar la página (GitHub Pages)
 
