@@ -45,18 +45,18 @@ Provienen de clientes, compañeros, supervisores y áreas administrativas: pedid
 
 ## Comisión de Impacto de la IA en el Trabajo — UTRADEC-CGT
 
-- Licep Alexandra Briceño Torres
-- Vladimir Ceballos Adarve — Secretario Técnico
 - Joaquín Emilio Gómez Manzano
 - Tatiana Moreno
-- Percy Oyola
+- Licep Alexandra Briceño Torres
 - Heriberto Rodríguez
-- Edgardo Meneghello — UITIDET
-- Dr. Andrés Bohórquez C.
+- Edgardo Meneghello — **UITIDET**
+- Andrés Bohórquez C.
+- Vladimir Ceballos Adarve — **Secretario Técnico**
+
 
 ## Publicar la página (GitHub Pages)
 
-En el repositorio: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, rama `main`, carpeta `/ (root)` → **Save**. En uno o dos minutos la página queda disponible en el enlace de arriba.
+En el repositorio: Para desarrollo de actividad.
 
 ---
 
