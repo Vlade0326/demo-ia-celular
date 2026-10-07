@@ -3,76 +3,107 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Bandeja de la demostración</title>
+<title>La IA desde el celular — UTRADEC-CGT</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
 <style>
-body{margin:0}*{box-sizing:border-box}
-/* Layout: una sola columna tipo bandeja de entrada, pensada para el celular; botón grande de "copiar todo" arriba */
+*{box-sizing:border-box}
+/* Layout: una sola columna pensada para el celular: contexto, el puente, los 15 mensajes y la comisión */
 :root{
   --bg:#f5f6f3; --surface:#ffffff; --fg:#1d2420; --muted:#5d6a63; --line:#dde2dc;
   --accent:#1f6b52; --accent-ink:#ffffff; --accent-soft:#e3efe9;
   --f-display:"Fraunces",Georgia,serif; --f-body:"Source Sans 3",system-ui,sans-serif; --f-mono:"JetBrains Mono",ui-monospace,monospace;
+  color-scheme:light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+@media (prefers-color-scheme:dark){:root{
   --bg:#141a17; --surface:#1c2420; --fg:#e7ece8; --muted:#9aa8a0; --line:#2c3732;
   --accent:#5fc19b; --accent-ink:#0e1a14; --accent-soft:#1f3329; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#141a17; --surface:#1c2420; --fg:#e7ece8; --muted:#9aa8a0; --line:#2c3732;
-  --accent:#5fc19b; --accent-ink:#0e1a14; --accent-soft:#1f3329; color-scheme:dark}
-body{background:var(--bg);color:var(--fg);font:16px/1.5 var(--f-body)}
-.wrap{max-width:640px;margin:0 auto;padding-inline:16px;padding-block:24px 48px;display:flex;flex-direction:column;gap:20px}
-h1{font:600 1.7rem/1.15 var(--f-display);margin:0;text-wrap:balance}
-h2{font:600 1.15rem/1.2 var(--f-display);margin:0}
-.lede{color:var(--muted);margin:6px 0 0}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 var(--f-body)}
+.wrap{max-width:640px;margin:0 auto;padding-inline:16px;padding-block:calc(24px + env(safe-area-inset-top,0px)) calc(48px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:20px}
+.eyebrow{font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0}
+h1{font:600 1.7rem/1.15 var(--f-display);margin:4px 0 0;text-wrap:balance}
+h2{font:600 1.15rem/1.2 var(--f-display);margin:0;text-wrap:balance}
+h3{font:600 1rem/1.25 var(--f-body);margin:0}
+p{margin:0}
+.lede{color:var(--muted);margin-top:8px}
 .steps{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px}
-button{font:600 0.95rem var(--f-body);border-radius:10px;cursor:pointer;border:1px solid var(--accent);transition:background .15s}
+button{font:600 .95rem var(--f-body);border-radius:10px;cursor:pointer;border:1px solid var(--accent);transition:background .15s}
 button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .big{background:var(--accent);color:var(--accent-ink);padding:14px 16px;font-size:1.05rem;width:100%}
 .small{background:transparent;color:var(--accent);padding:6px 12px;flex-shrink:0}
-.small.done,.big.done{background:var(--accent-soft);color:var(--accent);}
-.block{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px}
-.prompt{margin:0;white-space:pre-wrap;font-size:.98rem}
+.done{background:var(--accent-soft)!important;color:var(--accent)!important}
+.block{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.hint{background:var(--accent-soft);border-radius:10px;padding:10px 12px;font-size:.95rem}
+.bridge{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:520px){.bridge{grid-template-columns:1fr}}
+.pillar{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.pillar .tag{font:500 .75rem var(--f-mono);color:var(--accent)}
+.pillar p{font-size:.93rem;color:var(--muted)}
+.quote{border-left:3px solid var(--accent);padding-left:12px;font-style:italic}
+.quote cite{display:block;font-style:normal;font-size:.85rem;color:var(--muted);margin-top:4px}
 .list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
 .msg{display:grid;grid-template-columns:2.2rem 1fr auto;gap:10px;align-items:start;padding:14px 0;border-top:1px solid var(--line)}
 .msg:first-child{border-top:0}
 .num{font:500 .8rem var(--f-mono);color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
 .body{min-width:0}
 .from{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);font-weight:600}
-.text{margin:2px 0 0}
-.note{color:var(--muted);font-size:.88rem;margin:0}
+.text{margin-top:2px}
+.members{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}
+@media (max-width:420px){.members{grid-template-columns:1fr}}
+.members li{min-width:0}
+.members small{display:block;color:var(--muted);font-size:.82rem}
+.note{color:var(--muted);font-size:.88rem}
 @media (prefers-reduced-motion:reduce){button{transition:none}}
 </style>
 </head>
 <body>
 <main class="wrap">
   <header>
-    <h1>La IA desde el celular: bandeja de la demostración</h1>
-    <p class="lede">15 mensajes simulados de una mañana de trabajo. Todos los datos son ficticios.</p>
+    <p class="eyebrow">70.ª Plenaria · Junta Directiva Nacional UTRADEC-CGT</p>
+    <h1>La IA desde el celular</h1>
+    <p class="lede">Demostración práctica presentada por la Comisión de Impacto de la IA en el Trabajo. Todos los mensajes son ficticios.</p>
   </header>
 
-  <section class="block" aria-labelledby="como">
-    <h2 id="como">Cómo usarlo</h2>
-    <ol class="steps">
-      <li>Toca <strong>Copiar prompt + 15 mensajes</strong>.</li>
-      <li>Abre tu app de IA (Claude, ChatGPT, Gemini…).</li>
-      <li>Pega el texto y envíalo.</li>
-      <li>Revisa la clasificación y las respuestas antes de usarlas.</li>
-    </ol>
-    <button class="big" id="copy-all" data-label="Copiar prompt + 15 mensajes">Copiar prompt + 15 mensajes</button>
+  <section class="block" aria-labelledby="puente">
+    <h2 id="puente">El puente entre la IA, las empresas y los trabajadores</h2>
+    <div class="bridge">
+      <div class="pillar"><span class="tag">La IA</span><h3>Una herramienta</h3><p>Ayuda a organizar, resumir y redactar. No decide ni reemplaza el criterio de las personas.</p></div>
+      <div class="pillar"><span class="tag">Las empresas</span><h3>Adoptan la tecnología</h3><p>Deben informar y consultar antes de introducir IA que cambie la forma de trabajar.</p></div>
+      <div class="pillar"><span class="tag">Los trabajadores</span><h3>Participan y deciden</h3><p>Tienen derecho a formación, a ser escuchados y a que la IA mejore su trabajo sin precarizarlo.</p></div>
+    </div>
+    <p>El diálogo social es ese puente. La comisión trabaja para que la tecnología llegue a los puestos de trabajo con información, formación y negociación colectiva.</p>
+    <p class="quote">Regular la tecnología no es negarla: es garantizar que el avance no se pague con la precarización de quienes trabajan.<cite>Idea de Edgardo Meneghello (UITIDET)</cite></p>
   </section>
 
-  <section class="block" aria-labelledby="p">
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-      <h2 id="p">Prompt</h2>
-      <button class="small" id="copy-prompt" data-label="Copiar">Copiar</button>
-    </div>
-    <p class="prompt" id="prompt-text">Actúa como asistente de productividad laboral. Analiza estos 15 mensajes. Clasifica cada uno como URGENTE, IMPORTANTE o PUEDE ESPERAR. Explica brevemente por qué. Después, crea una lista de acciones en orden de prioridad y redacta una respuesta profesional para cada mensaje. No inventes información. Si falta un dato, indícalo como 'dato pendiente'.</p>
+  <section class="block" aria-labelledby="como">
+    <h2 id="como">Pruébalo en tu celular</h2>
+    <ol class="steps">
+      <li>Toca <strong>Copiar los 15 mensajes</strong>.</li>
+      <li>Abre tu app de IA (Claude, ChatGPT, Gemini…) y pégalos.</li>
+      <li>Dile con tus palabras qué necesitas.</li>
+      <li>Revisa el resultado antes de usarlo: la decisión es tuya.</li>
+    </ol>
+    <p class="hint">Por ejemplo: <em>"Ordena estos mensajes por prioridad y ayúdame a responderlos."</em></p>
+    <button class="big" id="copy-all" data-label="Copiar los 15 mensajes">Copiar los 15 mensajes</button>
   </section>
 
   <section class="block" aria-labelledby="m">
-    <h2 id="m">Los 15 mensajes</h2>
+    <h2 id="m">Los 15 mensajes de una mañana de trabajo</h2>
     <ol class="list" id="list"></ol>
+  </section>
+
+  <section class="block" aria-labelledby="c">
+    <h2 id="c">Comisión de Impacto de la IA en el Trabajo</h2>
+    <ul class="members">
+      <li>Licep Alexandra Briceño Torres</li>
+      <li>Vladimir Ceballos Adarve<small>Secretario Técnico</small></li>
+      <li>Joaquín Emilio Gómez Manzano</li>
+      <li>Tatiana Moreno</li>
+      <li>Percy Oyola</li>
+      <li>Heriberto Rodríguez</li>
+      <li>Adriana</li>
+    </ul>
+    <p class="note">UTRADEC-CGT</p>
   </section>
 
   <p class="note">Buena práctica: no pegues contraseñas ni información confidencial real en una herramienta de IA.</p>
@@ -96,36 +127,32 @@ const msgs = [
  ["Supervisor","Encontré un error en los datos del reporte. Corrígelo y envíame la versión final antes de terminar la jornada."],
  ["Cliente","Hola, me gustaría recibir información general sobre sus servicios y precios."]
 ];
-const list = document.getElementById("list");
+const list=document.getElementById("list");
 msgs.forEach(([from,text],i)=>{
   const li=document.createElement("li"); li.className="msg";
   li.innerHTML=`<span class="num">${String(i+1).padStart(2,"0")}</span>
     <div class="body"><div class="from"></div><p class="text"></p></div>
-    <button class="small" id="copy-${i+1}" data-label="Copiar">Copiar</button>`;
+    <button class="small" data-label="Copiar">Copiar</button>`;
   li.querySelector(".from").textContent=from;
   li.querySelector(".text").textContent=text;
-  li.querySelector("button").addEventListener("click",e=>copy(e.currentTarget,`Mensaje ${i+1} — ${from}: ${text}`, li.querySelector(".text")));
+  li.querySelector("button").addEventListener("click",e=>copy(e.currentTarget,`Mensaje ${i+1} — ${from}: ${text}`,li.querySelector(".text")));
   list.appendChild(li);
 });
-const promptText=document.getElementById("prompt-text").textContent;
-const allText=()=>promptText+"\n\n"+msgs.map(([f,t],i)=>`Mensaje ${i+1} — ${f}: ${t}`).join("\n\n");
-document.getElementById("copy-prompt").addEventListener("click",e=>copy(e.currentTarget,promptText,document.getElementById("prompt-text")));
-document.getElementById("copy-all").addEventListener("click",e=>copy(e.currentTarget,allText(),null));
-
+const allText=()=>msgs.map(([f,t],i)=>`Mensaje ${i+1} — ${f}: ${t}`).join("\n\n");
+document.getElementById("copy-all").addEventListener("click",e=>copy(e.currentTarget,allText(),list));
 function flash(btn,label){btn.textContent=label;btn.classList.add("done");
   setTimeout(()=>{btn.textContent=btn.dataset.label;btn.classList.remove("done")},2000)}
 function copy(btn,text,el){
-  try{
-    navigator.clipboard.writeText(text).then(()=>flash(btn,"Copiado ✓")).catch(()=>fallback(btn,text,el));
-  }catch(_){fallback(btn,text,el)}
+  try{navigator.clipboard.writeText(text).then(()=>flash(btn,"Copiado ✓")).catch(()=>fallback(btn,text,el))}
+  catch(_){fallback(btn,text,el)}
 }
 function fallback(btn,text,el){
-  const ta=document.createElement("textarea"); ta.value=text; ta.setAttribute("readonly","");
-  ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select();
-  let ok=false; try{ok=document.execCommand("copy")}catch(_){}
+  const ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");
+  ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();
+  let ok=false;try{ok=document.execCommand("copy")}catch(_){}
   ta.remove();
   if(ok){flash(btn,"Copiado ✓");return}
-  if(el){const r=document.createRange(); r.selectNodeContents(el); const s=getSelection(); s.removeAllRanges(); s.addRange(r);}
+  if(el){const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}
   flash(btn,"Mantén pulsado para copiar");
 }
 </script>
