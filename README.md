@@ -2,6 +2,8 @@
 
 Material de apoyo para la demostración **"La IA desde el celular: cómo usar inteligencia artificial para mejorar tareas del trabajo"**.
 
+Esta demostración fue presentada en la **70.ª Plenaria de la Junta Directiva Nacional de UTRADEC-CGT** por la **Comisión de Impacto de la IA en el Trabajo**.
+
 Los asistentes escanean un código QR, abren esta página en su teléfono y copian un prompt junto con 15 mensajes laborales simulados. Luego los pegan en su aplicación de IA (Claude, ChatGPT, Gemini u otra) para ver cómo la IA clasifica, prioriza y propone respuestas.
 
 **Página de la demostración:** https://vlade0326.github.io/demo-ia-celular/
@@ -43,4 +45,4 @@ En el repositorio: **Settings → Pages → Build and deployment → Source: Dep
 
 ---
 
-Preparado por Vladimir Ceballos.
+Preparado por Vladimir Ceballos para la Comisión de Impacto de la IA en el Trabajo — UTRADEC-CGT.
