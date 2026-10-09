@@ -8,6 +8,8 @@ Los asistentes escanean un código QR, abren esta página en su teléfono y copi
 
 **Página de la demostración:** https://vlade0326.github.io/demo-ia-celular/
 
+<p align="center"><img src="qr-con-texto.png" alt="Código QR que abre la página de la demostración" width="280"></p>
+
 ## Cómo usarla
 
 1. Escanea el código QR o abre el enlace de arriba.
